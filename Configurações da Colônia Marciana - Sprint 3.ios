@@ -1,0 +1,237 @@
+!Configuração de Acesso dos Dispositivos
+enable
+configure terminal
+banner motd "ACESSO AUTORIZADO APENAS PARA O DEPARTAMENTO DE TI DA COLONIA MARCIANA!"
+enable secret SenhaMarciana7702
+service password-encryption
+line console 0
+password TI*Marte2077
+login
+end wr
+
+!Criando a Interface Vlan 60
+TI*Marte2077
+enable
+SenhaMarciana7702
+configure terminal
+interface vlan 60
+ip address 192.168.0.234 255.255.255.240
+end
+wr
+
+!Criando as Subinterfaces
+interface g0/0.30
+encapsulation dot1q 30
+ip address 192.168.0.161 255.255.255.224
+interface g0/0.40
+encapsulation dot1q 40
+ip address 192.168.0.193 255.255.255.240
+interface g0/0.50
+encapsulation dot1q 50
+ip address 192.168.0.209 255.255.255.240
+interface g0/0.60
+encapsulation dot1q 60
+ip address 192.168.0.225 255.255.255.240
+
+!Criando SSH
+enable
+configure terminal
+ip domain-name coloniamarciana.local
+crypto key generate rsa general-key modulus 1024
+username suporte-marte privilege 15 secret suporte@123
+line vty 0 15
+transport input ssh
+line console 0
+login local
+end
+wr
+
+!Criando a Rota Padrão de Ipv4 no RT-01
+enable
+configure terminal
+interface s0/0/0
+ip address 200.100.0.1 255.255.255.252
+ip route 0.0.0.0 0.0.0.0 200.100.0.2
+
+!Vlans da Colônia Marciana
+enable
+configure terminal
+vlan 10
+name CONTROLE
+exit
+interface f0/24
+switchport mode trunk
+switchport access vlan 10
+end
+write memory
+enable
+configure terminal
+vlan 20
+name TERRA
+exit
+interface range f0/1-2
+switchport mode access
+switchport access vlan 40
+end
+write memory
+enable
+configure terminal
+vlan 40
+name TERRA
+exit
+interface range f0/1-2
+switchport mode access
+switchport access vlan 40
+end
+write memory
+enable
+configure terminal
+vlan 40
+name TERRA
+exit
+interface range f0/1-2
+switchport mode access
+switchport access vlan 40
+end
+write memory
+
+enable
+configure terminal
+vlan 10
+name CONTROLE
+exit
+vlan 20
+name ESTUFA
+exit
+vlan 30
+name INDUSTRIAL
+exit
+vlan 40
+name TERRA
+exit
+vlan 50
+name SERVIDORES
+exit
+interface range f0/1-2
+switchport mode access
+switchport access vlan 50
+
+enable
+configure terminal
+vlan 60
+name GERENCIAMENTO
+exit
+interface f0/3
+switchport mode access
+switchport access vlan 60
+end
+write memory
+exit
+enable
+configure terminal
+interface range f0/21-24
+switchport mode trunk
+switchport trunk native vlan 99
+switchport trunk allowed vlan 10,20,30,40,50,60,99
+end
+write memory
+exit
+
+enable
+configure terminal
+vlan 10
+name CONTROLE
+exit
+vlan 20
+name ESTUFA
+exit
+vlan 30
+name INDUSTRIAL
+exit
+vlan 40
+name TERRA
+exit
+vlan 50
+name SERVIDORES
+exit
+vlan 60
+name GERENCIAMENTO
+exit
+interface f0/23
+switchport mode trunk
+switchport trunk native vlan 99
+switchport trunk allowed vlan 10,20,30,40,50,60,99
+end
+write memory
+exit
+
+configure terminal
+interface g0/0
+switchport mode trunk
+switchport trunk native vlan 99
+switchport trunk allowed vlan 10,20,30,40,50,60,99
+end
+write memory
+
+!IPv6 Router
+configure terminal
+interface GigabitEthernet0/0.10 
+ipv6 address FE80::1 link local
+ipv6 address 2001:DB8:CAFE:1::1/64
+interface GigabitEthernet0/0.20
+ipv6 address FE80::1 link local
+ipv6 address 2001:DB8:CAFE:2::1/64
+interface GigabitEthernet0/0.30
+ipv6 address FE80::1 link local
+ipv6 address 2001:DB8:CAFE:3::1/64
+ interface GigabitEthernet0/0.40
+ipv6 address FE80::1 link local
+ipv6 address 2001:DB8:CAFE:4::1/64
+interface GigabitEthernet0/0.50
+ipv6 address FE80::1 link local
+ipv6 address 2001:DB8:CAFE:5::1/64
+interface Serial0/0/0
+ipv6 address FE80::1 link local
+ipv6 address 2000:200:100::1/64
+ipv6 route ::0 serial0/0/0 2000:200:100::2/64
+exit
+ipv6 unicast-routing
+end
+write
+
+!IPv6 PC's
+interface f0
+ipv6 address 2001:db8:cafe:1::a/64	
+ipv6 address FE80::A link local
+
+interface f0
+ipv6 address 2001:db8:cafe:1::b/64	
+ipv6 address FE80::B link local
+
+interface f0
+ipv6 address 2001:db8:cafe:2::a/64	
+ipv6 address FE80::A link local
+
+
+interface f0
+ipv6 address 2001:db8:cafe:2::b/64	
+ipv6 address FE80::B link local
+
+
+interface f0
+ipv6 address 2001:db8:cafe:3::a/64	
+ipv6 address FE80::A link local
+
+
+interface f0
+ipv6 address 2001:db8:cafe:3::b/64	
+ipv6 address FE80::B link local
+
+interface f0
+ipv6 address 2001:db8:cafe:4::a/64	
+ipv6 address FE80::A link local
+
+interface f0
+ipv6 address 2001:db8:cafe:4::b/64	
+ipv6 address FE80::B link local
+

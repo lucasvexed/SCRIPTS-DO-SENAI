@@ -1,0 +1,23 @@
+enable
+configure terminal
+vlan 10
+name ALUNOS
+vlan 20
+name CONVIDADOS
+vlan 30
+name COORDENAÇÃO
+exit
+interface range g0/1-2
+switchport mode trunk
+switchport trunk native vlan 99
+switchport trunk allowed vlan 10,20,30
+end
+write memory
+
+enable
+configure terminal
+interface g0/2
+switchport trunk native vlan 99
+switchport trunk allowed vlan 10,20,30
+end
+write memory

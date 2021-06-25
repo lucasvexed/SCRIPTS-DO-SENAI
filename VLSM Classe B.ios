@@ -1,0 +1,18 @@
+VLSM Classe B
+
+VLSM - REDE PRINCIPAL 172.16.0.0/16
+
+ALUNOS - 546 Hosts
+FUNCIONÁRIOS - 90 Hosts
+IMPRESSORAS - 20 Hosts
+APs - 15 Hosts
+
+ALUNOS (546 Hosts) - /22 - 255.255.252.0 - IP's 1024 - 1022 Válidos
+FUNCIONÁRIOS (90 Hosts) - /25 - 255.255.255.128 - IP's 128 - 126 Válidos
+IMPRESSORAS (20 Hosts) - /27 - 255.255.255.224 - IP's 32 - 30 Válidos
+APs (15 Hosts) - /27 - 255.255.255.224 - IP's 32 - 30 Válidos
+
+ALUNOS - 172.16.0.0/22 - IP's 1024 - Válidos 1022 - Hosts 1022
+FUNCIONÁRIOS - 172.16.4.0/25 - IP's 128 - Válidos 126 - Hosts 126
+IMPRESSORAS - 172.16.4.128/27 - IP's 32 - Válidos 30 - Hosts 30
+APs - 172.16.4.160/27 - IP's 32 - Válidos 30 - Hosts 30

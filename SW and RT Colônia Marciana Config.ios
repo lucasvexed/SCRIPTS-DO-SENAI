@@ -1,0 +1,33 @@
+enable
+configure terminal
+banner motd "ACESSO AUTORIZADO APENAS PARA O DEPARTAMENTO DE TI DA COLONIA MARCIANA!"
+enable secret SenhaMarciana7702
+service password-encryption
+line console 0
+password TI*Marte2077
+login
+
+!Criando a Interface Vlan 60
+TI*Marte2077
+enable
+SenhaMarciana7702
+configure terminal
+interface vlan 60
+ip address 192.168.0.234 255.255.255.240
+end
+wr
+
+!Criando as Subinterfaces
+interface g0/0.30
+encapsulation dot1q 30
+ip address 192.168.0.161 255.255.255.224
+interface g0/0.40
+encapsulation dot1q 40
+ip address 192.168.0.193 255.255.255.240
+interface g0/0.50
+encapsulation dot1q 50
+ip address 192.168.0.209 255.255.255.240
+interface g0/0.60
+encapsulation dot1q 60
+ip address 192.168.0.225 255.255.255.240
+

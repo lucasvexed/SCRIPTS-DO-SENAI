@@ -1,0 +1,16 @@
+enable
+configure terminal
+hostname SW-01
+banner motd "Acesso apenas para o Departamento de TI da Lordran S.A!"
+enable secret PraiseTheSun@00
+service password-encryption
+line console 0
+password Estus*Password
+login
+interface range f0/3-24
+shutdown
+exit
+interface g0/2
+shutdown
+end
+write memory

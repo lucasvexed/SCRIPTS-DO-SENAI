@@ -1,0 +1,11 @@
+!Configurar uma Interface no Modo Trunk
+
+enable
+configure terminal
+interface "nome da interface"
+switchport mode trunk
+switchport trunk native "vlan 99"
+
+!Liberar Vlans no Modo Trunk Native
+
+switchport trunk allowed vlan "lista de vlans separadas por vírgula" - Ex.: vlan 10,20,30,40,50.

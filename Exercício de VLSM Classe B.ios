@@ -1,0 +1,21 @@
+Exercício de VLSM Classe B 
+
+Rede Principal - 172.16.0.0/16
+
+QUARTO - 2015 Hosts
+BANHEIRO - 2000 Hosts
+COZINHA - 500 Hosts
+SALA - 300 Hosts
+GARAGEM - 240 Hosts
+
+QUARTO (2015 Hosts) - /21 255.255.248.0 - IP's 2048 - 2046 Válidos
+BANHEIRO (2000 Hosts) - /21 - 255.255.248.0 - IP's 2048 - 2046 Válidos
+COZINHA (500 Hosts) - /23 255.255.254.0 - IP's 512 - 510 Válidos
+SALA (300 Hosts) - /23 255.255.254.0 - IP's 512 - 510 Válidos
+GARAGEM (240 Hosts) - /24 255.255.255.0 - IP's 256 - 254 Válidos
+
+QUARTO - 172.16.0.0/21 - IP's 2048 - Válidos 2046 - Hosts 2015
+BANHEIRO - 172.16.8.0/21 - IP's 2048 - Válidos 2046 - Hosts 2000
+COZINHA - 172.16.16.0/23 - IP's 512 - Válidos 510 - Hosts 500
+SALA - 172.16.18.0/23 - IP's 512 - Válidos 510 - Hosts 300
+GARAGEM - 172.16.20.0/24 - IP's 256 - Válidos 254 - Hosts 240

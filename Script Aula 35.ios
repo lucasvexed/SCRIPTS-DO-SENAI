@@ -1,0 +1,35 @@
+!Entrar no modo enable
+enable
+
+!Entrar no modo de configuração
+configure terminal
+
+!Altera o nome do switch
+hostname SW-AULA35
+
+!Cria um banner de aviso no começo
+banner motd "Acesso apenas para o Departamento de TI"
+
+!Entrar no modo de linha do console
+line console 0
+
+!Cria uma senha para o switch
+password Senha@console
+
+!Ativa a senha do switch
+login
+
+!Voltar para o modo configure terminal
+exit
+
+!Cria uma senha para o modo enable
+enable secret Lucas@2504692001
+
+!Criar uma criptografia tipo 7 para a senha
+service password-encryption
+
+!Voltar ao modo enable
+exit
+
+!Salva as configurações
+write memory

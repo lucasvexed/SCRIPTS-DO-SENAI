@@ -1,0 +1,69 @@
+!SW and RT
+enable
+configure terminal
+hostname RT-01
+banner motd "ACESSO AUTORIZADO APENAS PARA O DEPARTAMENTO DE TI!"
+enable secret Senha*Enable
+service password-encryption
+line console 0
+password Senha*Console
+login
+end wr
+
+!SW
+enable
+configure terminal
+vlan 10
+name ALUNOS
+vlan 20
+name PROFESSORES
+vlan 30
+name GERENCIAMENTO
+vlan 99
+name NATIVA
+
+!SW
+interface g1/0/21
+no shutdown
+switchport mode access
+switchport access vlan 30
+
+!SW
+interface g1/0/24
+no shutdown
+switchport mode trunk
+switchport trunk native vlan 99
+switchport trunk allowed vlan 10,20,30,99
+
+!SW
+interface vlan 10
+ip address 192.168.0.126 255.255.255.128
+interface vlan 20
+ip address 192.168.0.158 255.255.255.224
+interface vlan 30
+ip address 192.168.0.190 255.255.255.224
+
+!SW and RT
+enable
+configure terminal
+ip domain-name rt-senai.com
+crypto key generate rsa general-key modulus 1024
+username Lucas privilege 15 secret senha*123
+line vty 0 15
+transport input ssh
+line console 0
+login local
+end
+wr
+
+!RT
+interface g0/0.10
+encapsulation dot1q 10
+ip address 192.168.0.1 255.255.255.128
+interface g0/0.20
+encapsulation dot1q 20
+ip address 192.168.0.129 255.255.255.224
+interface g0/0.30
+encapsulation dot1q 30
+ip address 192.168.0.161 255.255.255.224
+

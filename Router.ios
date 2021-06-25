@@ -1,0 +1,21 @@
+enable
+configure terminal
+hostname RT-01
+banner motd "Acesso apenas para o Departamento de TI da Lordran S.A!"
+enable secret PraiseTheSun@00
+service password-encryption
+line console 0
+password Estus*Password
+login
+interface g0/0
+ip address 172.16.0.1 255.255.0.0
+no shutdown
+exit
+interface g0/1
+ip address 10.0.0.1 255.0.0.0
+no shutdown
+exit
+interface g0/2
+shutdown
+end
+write memory

@@ -1,0 +1,9 @@
+!Configurar IP em uma interface
+
+(config-if)# ip address <endereço> <máscara>
+
+(config-if)# no shutdown
+
+!Como mostrar a tabela de roteamento
+
+(enable)# show ip route

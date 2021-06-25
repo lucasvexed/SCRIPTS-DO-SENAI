@@ -1,0 +1,108 @@
+
+enable
+configure terminal
+vlan 10
+name CONTROLE
+exit
+interface f0/24
+switchport mode trunk
+switchport access vlan 10
+end
+write memory
+enable
+configure terminal
+vlan 20
+name TERRA
+exit
+interface range f0/1-2
+switchport mode access
+switchport access vlan 40
+end
+write memory
+enable
+configure terminal
+vlan 40
+name TERRA
+exit
+interface range f0/1-2
+switchport mode access
+switchport access vlan 40
+end
+write memory
+enable
+configure terminal
+vlan 40
+name TERRA
+exit
+interface range f0/1-2
+switchport mode access
+switchport access vlan 40
+end
+write memory
+
+enable
+configure terminal
+vlan 10
+name CONTROLE
+exit
+vlan 20
+name ESTUFA
+exit
+vlan 30
+name INDUSTRIAL
+exit
+vlan 40
+name TERRA
+exit
+vlan 50
+name SERVIDORES
+exit
+interface range f0/1-2
+switchport mode access
+switchport access vlan 50
+
+enable
+configure terminal
+vlan 60
+name GERENCIAMENTO
+exit
+interface f0/3
+switchport mode access
+switchport access vlan 60
+end
+write memory
+exit
+enable
+configure terminal
+interface range f0/21-24
+switchport mode trunk
+switchport trunk native vlan 99
+switchport trunk allowed vlan 10,20,30,40,50,60,99
+end
+write memory
+exit
+
+enable
+configure terminal
+vlan 10
+name CONTROLE
+exit
+vlan 20
+name ESTUFA
+exit
+vlan 30
+name INDUSTRIAL
+exit
+vlan 50
+name SERVIDORES
+exit
+vlan 60
+name GERENCIAMENTO
+exit
+interface range f0/21-24
+switchport mode trunk
+switchport trunk native vlan 99
+switchport trunk allowed vlan 10,20,30,40,50,60,99
+end
+write memory
+exit

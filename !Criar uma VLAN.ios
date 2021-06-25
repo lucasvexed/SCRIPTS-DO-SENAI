@@ -1,0 +1,16 @@
+!Criar uma VLAN
+    >enable
+    #configure terminal
+    (config)#vlan <nº-da-vlan>
+    (config-vlan)#name <nome-da-vlan>
+
+!Verificar as VLAN criadas no equipamento
+    >enable
+    #show vlan brief
+
+!Colocar uma Interface em uma VLAN (Access)
+    >enable
+    #configure terminal
+    (config)#interface <nome-da-interface>
+    (config-if)#switchport mode access
+    (config-if)#switchport access vlan 10

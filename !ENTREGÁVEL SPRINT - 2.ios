@@ -1,0 +1,15 @@
+!ENTREGÁVEL SPRINT - 2
+
+!TOPOLOGIA MARCIANA - CAMADA 1 E 2
+
+enable
+configure terminal
+hostname SW-TERRA
+banner motd "Apenas os funcionários do Departamento de TI da M.T.R.E podem acessar esse dispositivo!"
+enable secret Senha*3n4bl3
+service password-encryption
+line console 0
+password Senha*c0n50l3
+login
+end
+write memory
